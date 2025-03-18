@@ -48,4 +48,15 @@ STRFTIME('%d', Date) AS Day
 FROM PM25_Pereira_desde2024;
  
 Identification of the PM2.5 for the days with the lowest daily average temperature (Avg_T):
+![img_mine](Img_4b.jpg)
+![img_mine](Img_4c.jpg)
+
+> Insight: 
+> The days with the lowest average temperatures exhibit PM2.5 values lower than the overall average of 11.7.
+
+
+Identification of PM2.5 levels on the days with the highest daily average temperatures (Avg_T):
+
+
+
 

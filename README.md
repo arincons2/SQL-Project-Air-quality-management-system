@@ -38,14 +38,8 @@ There are two working tables:
 -	An air quality table with columns for Date and PM2.5 levels.
 
 Data profiling for the air quality table:
-Data profiling for the air quality table:
-/*Determination of Year, Month and Day from the Data column,  
- * as a way to assess the correcteness of the Date column
- */
-SELECT Date, STRFTIME('%Y', Date) AS Year,  
-STRFTIME('%m', Date) AS Month,
-STRFTIME('%d', Date) AS Day
-FROM PM25_Pereira_desde2024;
+
+![img_mine](Img_4a.jpg)
  
 Identification of the PM2.5 for the days with the lowest daily average temperature (Avg_T):
 ![img_mine](Img_4b.jpg)
@@ -54,8 +48,53 @@ Identification of the PM2.5 for the days with the lowest daily average temperatu
 > Insight: 
 > The days with the lowest average temperatures exhibit PM2.5 values lower than the overall average of 11.7.
 
-
 Identification of PM2.5 levels on the days with the highest daily average temperatures (Avg_T):
+![img_mine](Img_5a.jpg)
+![img_mine](Img_5b.jpg)
+> Insight: 
+> The days with the highest average temperature (Avg_T) show PM2.5 values that can be either lower or higher than the average of 11.7.
+
+Combining the weather and air quality tables into one unified table:
+
+![img_mine](Img_6a.jpg)
+![img_mine](Img_6b.jpg)
+> Insight: 
+> The combined table contains 327 rows, which is logical considering that the Air quality table has 327 rows and the Weather table has 366 rows.
+
+Analysis of the relationship between monthly values of PM2.5, average temperature (Avg_T), and precipitation (Precip): 
+![img_mine](Img_7a.jpg)
+![img_mine](Img_7b.jpg)
+> Insights: 
+>- The highest monthly PM2.5 level (15.6) occurs in March, while the corresponding average temperature (Avg_T) is 23.7°C, the second highest value, and the monthly precipitation (Precip) measure of 2.28 is the second lowest.
+>- The lowest monthly PM2.5 level (9.04) is recorded in November, with the average temperature (Avg_T) being 20.9°C, which is the lowest value. Additionally, the monthly precipitation (Precip) is 8.1, ranking as the fifth highest.
+>- Monthly PM2.5 levels are related to Avg_T values: high PM2.5 levels correlate with high Avg_T values, while low PM2.5 levels correlate with low Avg_T values.
+>- There is no evident correlation between the monthly values of PM2.5 and precipitation levels.
+
+
+Identify the three highest PM2.5 values for each month, as well as the monthly average PM2.5:
+![img_mine](Img_7c.jpg)
+
+
+![img_mine](Img_8a.jpg)
+
+![img_mine](Img_8b.jpg)
+> Insights: 
+>- The table above presents the three highest PM2.5 values for each month. It shows that the highest values occur in February and March, while lower values are observed in July and November.
+>- The average monthly PM2.5 value is highest in March (15.6) and lowest in November (9.04).
+
+Identify the three highest PM2.5 values for each month, including their ranks and corresponding average values for temperature (Avg_T) and precipitation (Precip), as well as the monthly averages for PM2.5, Precip, and Avg_T:
+
+![img_mine](Img_8c.jpg)
+![img_mine](Img_9a.jpg)
+![img_mine](Img_9b.jpg)
+> Insights: 
+>- The three highest monthly PM2.5 values occur in February and March, while the corresponding average temperature (Avg_T) values are high, and the precipitation (Precip) values are low.
+>- The highest monthly PM2.5 level of 15.6 occurs in March, which has a monthly average temperature of 23.6°C, the second highest value, and monthly precipitation of 2.28, the second lowest.
+>- The lowest monthly PM2.5 level (9.04) occurs in November, which has the lowest average temperature (21°C) and the third highest precipitation (8.1). 
+>- There is a relationship between the monthly values of PM2.5 and Avg_T: as Avg_T increases, PM2.5 also increases.
+
+
+
 
 
 

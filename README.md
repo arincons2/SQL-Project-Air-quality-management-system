@@ -138,7 +138,9 @@ Identify the three highest PM2.5 values for each month, including their ranks an
 >- The lowest monthly PM2.5 level (9.04) occurs in November, which has the lowest average temperature (21°C) and the third highest precipitation (8.1). 
 >- There is a relationship between the monthly values of PM2.5 and Avg_T: as Avg_T increases, PM2.5 also increases.  
 
-
+##**Recommendations**
+* Protective measures for people must be taken on months with the highest air pollution, namely February and March. For instance, communication campaigns about health risks should be conducted during these months, especially for individuals with respiratory issues.
+* Transportation measures should be taken on months with the highest air pollution. For instance, fostering the use of public transportation and low-carbon-emission transport, as well as imposing license plate restrictions.
 
 
 

@@ -12,13 +12,20 @@ Tools and techniques utilized:
 - SQLite with DBeaver 25.0
 - Aggregation Expressions
 - Common Table Expressions (CTEs)
+- Unions (UNION ALL)
 - Joins (Inner joins)
 - Window functions
 
 ## **Methodology**
-The daily weather data includes the date, daily minimum temperature, daily maximum temperature, daily average temperature, and daily precipitation, obtained from https://www.weatherandclimate.info/monitor/?id=80210&month=11&year=2024. The air quality data comprises the date and PM2.5 levels, collected from http://sisaire.ideam.gov.co/ideam-sisaire-web/consultas.xhtml. The downloaded CSV files were opened in MS Excel, where a new Date column was created. The updated Excel files were then saved as CSVs and uploaded into SQL's DBeaver. In DBeaver, there are two working tables: 1. A weather table with columns for Date, daily maximum temperature, daily minimum temperature, daily average temperature, and daily precipitation. 2. An air quality table with columns for Date and PM2.5 levels. Data management in SQL involves the following tasks:
+The data correspond to Pereira (Colombia), period 2022 to 2024. The air quality measures correspond to Air Quality station Carder - Las Americas, Pereira, period 2022 to 2024. There are two datasets: the weather and the air quality datasets. 
+- The daily weather data includes the date, daily minimum temperature, daily maximum temperature, daily average temperature, and daily precipitation, obtained from https://www.weatherandclimate.info/monitor/?id=80210&month=11&year=2024. 
+- The air quality data comprises the date and PM2.5 levels, collected from http://sisaire.ideam.gov.co/ideam-sisaire-web/consultas.xhtml.
 
+The downloaded CSV files were opened in MS Excel, where a new Date column was created. The updated Excel files were then saved as CSVs and uploaded into SQL's DBeaver. In DBeaver, there are two working tables:
+- A weather table with columns for Date, daily maximum temperature, daily minimum temperature, daily average temperature, and daily precipitation.
+- An air quality table with columns for Date and PM2.5 levels.
 
+The data management in SQL involves the following tasks:
 -	Data Profiling, which includes aggregation and basic queries: 1. Identification of null values. 2. Calculation of average, minimum, and maximum values. 3. Count of the number of rows. 4. Detection of illogical (outlier) values. 
 -	Combination of Weather and Air Quality Tables, utilizing INNER joins.
 -	Basic analysis of the relationship between weather and air quality, which involves INNER joins, Common Table Expressions (CTEs) and window functions. This includes analyzing PM2.5 values in relation to temperature and precipitation levels. 
@@ -38,109 +45,133 @@ The daily weather data includes the date, daily minimum temperature, daily maxim
 ## **Code based tasks and insights** 
 
 There are two working tables: 
--	A weather table with columns for Date, daily maximum temperature, daily minimum temperature, daily average temperature (Avg_T), and daily precipitation (Precip). 
--	An air quality table with columns for Date and PM2.5 levels.
-
-Data profiling for the air quality table:
-
-![img_mine](Img_4a.jpg)
-
-<pre>
+-	The weather table (DataWeather_PereiraFrom2022) with columns for Date, daily maximum temperature, daily minimum temperature, daily average temperature (Avg_T), and daily precipitation (Precip). 
+-	The air quality table (PM25_PereiraFrom2022) with columns for Date and PM2.5 levels.
 
 
+### ***Data profiling for Air quality (PM<sub>2.5</sub>)***:
 
+![img_mine](Figure1.jpg)
+</pre>
+### ***Data profiling for the Weather table***:
+![img_mine](Figure2.jpg)
 
 </pre>
 
-Identification of the PM2.5 for the days with the lowest daily average temperature (Avg_T):  
+Remarks:
+-	The result MIN(Min_T) = -8.5 is illogical.  From an indepth examination, I notice several illogical values in Min_T column, including 0.0. Then, I disregard Min_T column. 
+-	The result MIN(Avg_T) = 0 is illogical. From an indepth examination of Avg_T column, I notice that Avg_T = 0 for Date 2022-07-26. Therefore, I delete the row involving  this value.
+
+Elimination of row with Date 2022-07-26:
+
+![img_mine](Figure3.jpg)
+
+</pre>
+
+### ***Determination of the monthly PM<sub>2.5</sub> values, but segmented by years 2022, 2023, 2024***:
+
+![img_mine](Figure4.jpg)
+
+</pre>
+
+![img_mine](Figure5.jpg)
+
+</pre>
+
+Excel figure:
+
+![img_mine](Figure6.jpg)
+
+</pre>
+
+Remarks:
+- The behavior of PM<sub>2.5</sub> exhibits significant changes across years. As one example of this, the month exhibiting the highest average PM<sub>2.5</sub> is different between the three years, and also the month exhibiting the lowest average PM2.5.  
+-	In general, February exhibits a high PM<sub>2.5</sub> for 2023 and 2024; whereas June exhibits a low PM<sub>2.5</sub> for the three  years. 
+
+### ***Determination of daily corresponding values of T<sub>avg</sub>, Precip and PM<sub>2.5</sub>, along time***:
+
+The Weather and Air quality tables are combined into a single table, using INNER JOIN, with the Date as the key for the JOIN. Basic combined table:
+
+![img_mine](Figure7.jpg)
+</pre>
+
+![img_mine](Figure8.jpg)
+</pre>
+
+Also, I determine the number of rows:
+
+![img_mine](Figure9.jpg)
+
+</pre>
+
+Result: 715. Recall that the number of rows of the Air quality table is  715, and the number of rows of the Weather table is 1095.  Therefore, the obtained number of rows (715) is logical.
+
+Development of the combined table, but I also generate the time in days, that is, the Day series number, departing from 0, as it is necessary for the creation of figure of  AvgT, Precip, and PM<sub>2.5</sub> along time:
+
+![img_mine](Figure10.jpg)
+</pre>
+
+![img_mine](Figure11.jpg)
+</pre>
+
+Excel figure: 
+
+![img_mine](Figure12.jpg)
+</pre>
+
+Remark: 
+- From the above figures it follows that the time courses of daily averages of T<sub>avg</sub> and PM<sub>2.5</sub> do not showw a clear relationship between them.
+- Therefore, it is necessary to examine the time courses of monthly averages.
   
-![img_mine](Img_4b.jpg)
+### ***Determination of monthly corresponding values of Tavg, Precip and PM<sub>2.5</sub>, along time***:
+![img_mine](Figure13.jpg)
+</pre>
 
-![img_mine](Img_4c.jpg)
+![img_mine](Figure14.jpg)
+</pre>
 
-> Insight: 
-> The days with the lowest average temperatures exhibit PM2.5 values lower than the overall average of 11.7.  
+Excel figure:
 
-<pre>
+![img_mine](Figure15.jpg)
+</pre>
+![img_mine](Figure16.jpg)
+</pre>
+![img_mine](Figure17.jpg)
+</pre>
+
+Remark: there is a mild correlation between monthly PM<sub>2.5</sub> levels and monthly air temperature (Avg_T): 
+-	High PM<sub>2.5</sub> levels are associated with high Avg_T values, whereas low PM<sub>2.5</sub> levels correspond to low AvgT values. 
+-	In contrast, there is no evident relationship between PM<sub>2.5</sub> levels and precipitation (Precip).
 
 </pre>
 
-Identification of PM2.5 levels on the days with the highest daily average temperatures (Avg_T):  
-
-![img_mine](Img_5a.jpg)
-
-![img_mine](Img_5b.jpg)
-> Insight: 
-> The days with the highest average temperature (Avg_T) show PM2.5 values that can be either lower or higher than the average of 11.7.  
-     
-<pre>
-
-
-
-
-</pre>
-    
-Combining the weather and air quality tables into one unified table:
-
-![img_mine](Img_6a.jpg)
-![img_mine](Img_6b.jpg)
-> Insight: 
-> The combined table contains 327 rows, which is logical considering that the Air quality table has 327 rows and the Weather table has 366 rows.
-  
-<pre>
-
-
-
-
+> Insights for 2024: 
+>- The three highest monthly PM<sub>2.5</sub> values occur in February and March, while the corresponding average temperature (Avg_T) values are high, and the precipitation (Precip) values are low.
+>- The highest monthly PM<sub>2.5</sub> level of 15.6 occurs in March, which has a monthly average temperature of 23.6°C, the second highest value, and monthly precipitation of 2.28, the second lowest.
+>- The lowest monthly PM<sub>2.5</sub> level (9.04) occurs in November, which has the lowest average temperature (21°C) and the third highest precipitation (8.1). 
+>- There is a relationship between the monthly values of PM<sub>2.5</sub> and Avg_T: as Avg_T increases, PM<sub>2.5</sub> also increases.
+ 
 </pre>
 
-Analysis of the relationship between monthly values of PM2.5, average temperature (Avg_T), and precipitation (Precip): 
-![img_mine](Img_7a.jpg)
+### ***Identification of the three highest PM<sub>2.5</sub> values for each month, using Windows functions***:
 
-![img_mine](Img_7b.jpg)
-> Insights: 
->- The highest monthly PM2.5 level (15.6) occurs in March, while the corresponding average temperature (Avg_T) is 23.7°C, the second highest value, and the monthly precipitation (Precip) measure of 2.28 is the second lowest.
->- The lowest monthly PM2.5 level (9.04) is recorded in November, with the average temperature (Avg_T) being 20.9°C, which is the lowest value. Additionally, the monthly precipitation (Precip) is 8.1, ranking as the fifth highest.
->- Monthly PM2.5 levels are related to Avg_T values: high PM2.5 levels correlate with high Avg_T values, while low PM2.5 levels correlate with low Avg_T values.
->- There is no evident correlation between the monthly values of PM2.5 and precipitation levels.  
-
-
-<pre>
-
-
-
-
+![img_mine](Figure18.jpg)
 </pre>
-Identify the three highest PM2.5 values for each month, as well as the monthly average PM2.5:
-![img_mine](Img_7c.jpg)
 
-![img_mine](Img_8a.jpg)
-
-![img_mine](Img_8b.jpg)
-> Insights: 
->- The table above presents the three highest PM2.5 values for each month. It shows that the highest values occur in February and March, while lower values are observed in July and November.
->- The average monthly PM2.5 value is highest in March (15.6) and lowest in November (9.04).  
-
-
-
-<pre>
-
-
-
-
+![img_mine](Figure19.jpg)
 </pre>
-               
-Identify the three highest PM2.5 values for each month, including their ranks and corresponding average values for temperature (Avg_T) and precipitation (Precip), as well as the monthly averages for PM2.5, Precip, and Avg_T:
 
-![img_mine](Img_8c.jpg)
+Next, I Identify the three highest PM<sub>2.5</sub> values for each month, but I also obtain the corresponding monthly averages AVG(T), AVG(Precip), and  AVG(PM2_5), for each Month:
 
-![img_mine](Img_9a.jpg)
-![img_mine](Img_9b.jpg)
-> Insights: 
->- The three highest monthly PM2.5 values occur in February and March, while the corresponding average temperature (Avg_T) values are high, and the precipitation (Precip) values are low.
->- The highest monthly PM2.5 level of 15.6 occurs in March, which has a monthly average temperature of 23.6°C, the second highest value, and monthly precipitation of 2.28, the second lowest.
->- The lowest monthly PM2.5 level (9.04) occurs in November, which has the lowest average temperature (21°C) and the third highest precipitation (8.1). 
->- There is a relationship between the monthly values of PM2.5 and Avg_T: as Avg_T increases, PM2.5 also increases.  
+![img_mine](Figure20.jpg)
+</pre>
+
+![img_mine](Figure21.jpg)
+</pre>
+
+Remark: there is a correlation between monthly PM<sub>2.5</sub> levels and monthly air temperature (Avg_T): 
+-	High PM<sub>2.5</sub> levels are associated with high Avg_T values, whereas low PM<sub>2.5</sub> levels correspond to low Avg_T values. 
+-	In contrast, there is no evident relationship between PM<sub>2.5</sub> levels and precipitation (Precip). 
 
 
 

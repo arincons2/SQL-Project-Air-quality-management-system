@@ -132,7 +132,7 @@ Remark:
 
 Excel figure:
 
-![img_mine](Figure15.jpg)
+![img_mine](Figure15b.jpg)
 </pre>
 ![img_mine](Figure16.jpg)
 </pre>

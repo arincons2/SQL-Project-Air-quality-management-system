@@ -35,7 +35,9 @@ The data management in SQL involves the following tasks:
 -	The data profiling, data wrangling and basic analysis of relationship between variables facilitate a future data analysis that utilices for instance Python and Power BI. 
 -	The data profiling conducted helped identify inconsistent values in the T<sub>min</sub> (daily minimum temperature) column of the weather table.
 -	The merging of weather and air quality tables combined with window functions, aggregations and common table expressions (CTEs) allowed the examination of the relationship between PM<sub>2.5</sub>, average temperature (Avg_T), and precipitation.
--	The analysis revealed a correlation between monthly PM<sub>2.5</sub> levels and monthly air temperature (Avg_T). High PM<sub>2.5</sub> levels are associated with high Avg_T values, whereas low PM<sub>2.5</sub> levels correspond to low Avg_T values. In contrast, there is no evident relationship between PM<sub>2.5</sub> levels and precipitation (Precip). 
+-	The behavior of PM<sub>2.5</sub> exhibits significant changes across years. As one example of this, the month exhibiting the highest average PM<sub>2.5</sub> is different between the three years, and also the month exhibiting the lowest average PM<sub>2.5</sub>.
+-	In general, February exhibits a high PM<sub>2.5</sub> for 2023 and 2024; whereas June exhibits a low PM<sub>2.5</sub> for the three years.
+-	The analysis revealed a correlation between monthly PM<sub>2.5</sub> levels and monthly air temperature (Avg_T). High PM<sub>2.5</sub> levels are associated with high Avg_T values, whereas low PM<sub>2.5</sub> levels correspond to low Avg_T values. In contrast, there is no evident relationship between PM<sub>2.5</sub> levels and precipitation (Precip).
 
 ## **Recommendations**
 * Protective measures for people must be taken on months with the highest air pollution, namely February and March. For instance, communication campaigns about health risks should be conducted during these months, especially for individuals with respiratory issues.

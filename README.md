@@ -19,23 +19,23 @@ Tools and techniques utilized:
 ## **Methodology**
 The data correspond to Pereira (Colombia), period 2022 to 2024. The air quality measures correspond to Air Quality station Carder - Las Americas, Pereira, period 2022 to 2024. There are two datasets: the weather and the air quality datasets. 
 - The daily weather data includes the date, daily minimum temperature, daily maximum temperature, daily average temperature, and daily precipitation, obtained from https://www.weatherandclimate.info/monitor/?id=80210&month=11&year=2024. 
-- The air quality data comprises the date and PM2.5 levels, collected from http://sisaire.ideam.gov.co/ideam-sisaire-web/consultas.xhtml.
+- The air quality data comprises the date and PM<sub>2.5</sub> levels, collected from http://sisaire.ideam.gov.co/ideam-sisaire-web/consultas.xhtml.
 
 The downloaded CSV files were opened in MS Excel, where a new Date column was created. The updated Excel files were then saved as CSVs and uploaded into SQL's DBeaver. In DBeaver, there are two working tables:
 - A weather table with columns for Date, daily maximum temperature, daily minimum temperature, daily average temperature, and daily precipitation.
-- An air quality table with columns for Date and PM2.5 levels.
+- An air quality table with columns for Date and PM<sub>2.5</sub> levels.
 
 The data management in SQL involves the following tasks:
 -	Data Profiling, which includes aggregation and basic queries: 1. Identification of null values. 2. Calculation of average, minimum, and maximum values. 3. Count of the number of rows. 4. Detection of illogical (outlier) values. 
 -	Combination of Weather and Air Quality Tables, utilizing INNER joins.
--	Basic analysis of the relationship between weather and air quality, which involves INNER joins, Common Table Expressions (CTEs) and window functions. This includes analyzing PM2.5 values in relation to temperature and precipitation levels. 
+-	Basic analysis of the relationship between weather and air quality, which involves INNER joins, Common Table Expressions (CTEs) and window functions. This includes analyzing PM<sub>2.5</sub> values in relation to temperature and precipitation levels. 
 
 
 ## **Overall conclusions and impact of the project**
 -	The data profiling, data wrangling and basic analysis of relationship between variables facilitate a future data analysis that utilices for instance Python and Power BI. 
--	The data profiling conducted helped identify inconsistent values in the Tmin (daily mínimum temperature) column of the weather table.
--	The merging of weather and air quality tables combined with window functions, aggregations and common table expressions (CTEs) allowed the examination of the relationship between PM2.5, average temperature (Avg_T), and precipitation.
--	The analysis revealed a correlation between monthly PM2.5 levels and monthly air temperature (Avg_T). High PM2.5 levels are associated with high Avg_T values, whereas low PM2.5 levels correspond to low Avg_T values. In contrast, there is no evident relationship between PM2.5 levels and precipitation (Precip). 
+-	The data profiling conducted helped identify inconsistent values in the T<sub>min</sub> (daily minimum temperature) column of the weather table.
+-	The merging of weather and air quality tables combined with window functions, aggregations and common table expressions (CTEs) allowed the examination of the relationship between PM<sub>2.5</sub>, average temperature (Avg_T), and precipitation.
+-	The analysis revealed a correlation between monthly PM<sub>2.5</sub> levels and monthly air temperature (Avg_T). High PM<sub>2.5</sub> levels are associated with high Avg_T values, whereas low PM<sub>2.5</sub> levels correspond to low Avg_T values. In contrast, there is no evident relationship between PM<sub>2.5</sub> levels and precipitation (Precip). 
 
 ## **Recommendations**
 * Protective measures for people must be taken on months with the highest air pollution, namely February and March. For instance, communication campaigns about health risks should be conducted during these months, especially for individuals with respiratory issues.
@@ -46,7 +46,7 @@ The data management in SQL involves the following tasks:
 
 There are two working tables: 
 -	The weather table (DataWeather_PereiraFrom2022) with columns for Date, daily maximum temperature, daily minimum temperature, daily average temperature (Avg_T), and daily precipitation (Precip). 
--	The air quality table (PM25_PereiraFrom2022) with columns for Date and PM2.5 levels.
+-	The air quality table (PM25_PereiraFrom2022) with columns for Date and PM<sub>2.5</sub> levels.
 
 
 ### ***Data profiling for Air quality (PM<sub>2.5</sub>)***:
@@ -85,7 +85,7 @@ Excel figure:
 </pre>
 
 Remarks:
-- The behavior of PM<sub>2.5</sub> exhibits significant changes across years. As one example of this, the month exhibiting the highest average PM<sub>2.5</sub> is different between the three years, and also the month exhibiting the lowest average PM2.5.  
+- The behavior of PM<sub>2.5</sub> exhibits significant changes across years. As one example of this, the month exhibiting the highest average PM<sub>2.5</sub> is different between the three years, and also the month exhibiting the lowest average PM<sub>2.5</sub>.  
 -	In general, February exhibits a high PM<sub>2.5</sub> for 2023 and 2024; whereas June exhibits a low PM<sub>2.5</sub> for the three  years. 
 
 ### ***Determination of daily corresponding values of T<sub>avg</sub>, Precip and PM<sub>2.5</sub>, along time***:

@@ -176,3 +176,5 @@ Remark: there is a correlation between monthly PM<sub>2.5</sub> levels and month
 Link to the SQL script (in Github):
 https://github.com/arincons2/SQL-Project-Air-quality-management-system/blob/7794e37132fe651f5e574937f980b97fd3b06b22/COMB_PM_nWeather1b.sql
 
+Or 
+

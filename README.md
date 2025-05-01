@@ -46,6 +46,12 @@ The data management in SQL involves the following tasks:
 
 ## **Code based tasks and insights** 
 
+Link to the SQL script (in Github):
+https://github.com/arincons2/SQL-Project-Air-quality-management-system/blob/7794e37132fe651f5e574937f980b97fd3b06b22/COMB_PM_nWeather1b.sql
+
+Or 
+https://github.com/arincons2/SQL-Project-Air-quality-management-system/blob/main/COMB_PM_nWeather1b.sql
+
 There are two working tables: 
 -	The weather table (DataWeather_PereiraFrom2022) with columns for Date, daily maximum temperature, daily minimum temperature, daily average temperature (Avg_T), and daily precipitation (Precip). 
 -	The air quality table (PM25_PereiraFrom2022) with columns for Date and PM<sub>2.5</sub> levels.

@@ -1,6 +1,9 @@
 # SQL-Project-Air-quality-management-system
 SQL Project: Air quality management system
 
+Link to the SQL script (SQL code in Github):
+https://github.com/arincons2/SQL-Project-Air-quality-management-system/blob/7794e37132fe651f5e574937f980b97fd3b06b22/COMB_PM_nWeather1b.sql
+
 ## **Problem statement**
 The city of Pereira, Colombia, has experienced a significant increase in the number of cars over the past few years, which has adversely affected air quality. This decline in air quality, in turn, impacts the health and quality of life of residents. To address this issue, data analytics (using for instance Power BI or Python) can help identify key factors, such as weather conditions, that influence air quality.  An important preliminary step is to manage the data by cleaning, querying, and organizing it via SQL, utilizing information collected from various websites.
 
@@ -46,7 +49,7 @@ The data management in SQL involves the following tasks:
 
 ## **Code based tasks and insights** 
 
-Link to the SQL script (in Github):
+Link to the SQL script (SQL code in Github):
 https://github.com/arincons2/SQL-Project-Air-quality-management-system/blob/7794e37132fe651f5e574937f980b97fd3b06b22/COMB_PM_nWeather1b.sql
 
 Or 
